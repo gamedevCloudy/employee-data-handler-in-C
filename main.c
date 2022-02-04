@@ -1,4 +1,4 @@
-/* Employee Data Handler by Aniruddha Maradwar*/
+/* Employee Data Handler by Aayush aka Cloudy*/
 #include <stdio.h>
 #include "conio.h"
 #include <stdlib.h>
