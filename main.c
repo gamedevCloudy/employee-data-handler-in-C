@@ -1,12 +1,13 @@
+/* Employee Data Handler by Aniruddha Maradwar*/
 #include <stdio.h>
 #include "conio.h"
-#include<stdlib.h>
-#include<string.h>
-#define max 20
+#include <stdlib.h>
+#include <string.h>
+
 struct empDat {
-    long int eNo; 
-    char * eName; 
-    long int salary; 
+  long int eNo; 
+  char eName[10]; 
+  long int salary; 
 };
 int num; 
 
@@ -22,7 +23,7 @@ int menu()
 {
     int menuOption; 
 
-    printf("Options: \n \n "); 
+    printf("\nOptions: \n \n "); 
     printf("1. Display Employee Data \n ");
     printf("2. Search Employee by Name\n "); 
     printf("3. Search Employee by Employee Number\n "); 
@@ -38,49 +39,46 @@ void perform(int actionToPerform, int timesToPerform, struct empDat eDat[])
 {
     system("clear"); 
     printf("You chose: %d \n", actionToPerform);
-
+    
     char eNm[10]; 
     int i = 0; 
     long int eCode; 
-    long int minSal; 
+    long int a,b, minSal; 
+
     switch (actionToPerform)
     {  
         case 1: 
-            printf("\n \nDisplaying Employee Data"); 
-            for(int i = 1; i >= timesToPerform; i++)
+            printf("\n \nDisplaying Employee Data... \n"); 
+            for(int i = 0; i < timesToPerform; i++)
             {
-                printf("%d.\t %ld\t %s  Salary:- %ld", timesToPerform, eDat[i].eNo, eDat[i].eName, eDat[i].salary);
+                printf("\n%ld\t  %s  Salary:- %ld", eDat[i].eNo, eDat[i].eName, eDat[i].salary);
+								printf("\n"); 
             }
         break; 
             
         case 2: 
         
         printf("Enter epmloyee's name to serach:- ");
-        gets(eNm); 
-        for(int i = 1; i >= timesToPerform; i++)
+        scanf("%s", eNm); 
+        for(int i = 0; i < timesToPerform; i++)
         {
             if(strcmp(eDat[i].eName, eNm) == 0)
             {
-                printf("%d.\t %ld\t %s  Salary:- %ld", timesToPerform, eDat[i].eNo, eDat[i].eName, eDat[i].salary);
-                break;
+                printf("\n %ld\t %s  Salary:- %ld",  eDat[i].eNo, eDat[i].eName, eDat[i].salary);
             }
         }
-        //int i = 0;
         if(i >= timesToPerform) printf("\n Record not found. \n");  
         break;
 
         case 3:
-        //int i = 0;
-        
         printf("Enter epmloyee's code to serach:- ");
         scanf("%ld", &eCode); 
-        for(int i = 1; i >= timesToPerform; i++)
+        for(int i = 0; i< timesToPerform; i++)
         {
-            if(eCode == eDat[i].eNo)
-            {
-                printf("%d.\t %ld\t %s  Salary:- %ld", timesToPerform, eDat[i].eNo, eDat[i].eName, eDat[i].salary);
-                break;
-            }
+          if(eCode == eDat[i].eNo)
+          {
+            printf("\n %ld\t %s  Salary:- %ld", eDat[i].eNo, eDat[i].eName, eDat[i].salary);
+          }
         }
         if(i == timesToPerform) printf("\n Record not found. \n");  
         break; 
@@ -90,33 +88,32 @@ void perform(int actionToPerform, int timesToPerform, struct empDat eDat[])
         {
             if(eDat[i].salary<= 20000 && eDat[i].salary >= 5000)
             {
-                printf("%d.\t %ld\t %s  Salary:- %ld", timesToPerform, eDat[i].eNo, eDat[i].eName, eDat[i].salary);
-                break;
+                printf("\n%ld\t %s  Salary:- %ld",  eDat[i].eNo, eDat[i].eName, eDat[i].salary);
             }
+						else if( i == (timesToPerform-1))
+						{
+							printf("No Valid Record Found!!!"); 
+						}
         }
         break; 
 
         case 5:
+				minSal = 5000; 
         for(int i =0; i < timesToPerform; i++)
         {
-            if(eDat[i].salary < minSal)
-            {
-             minSal = eDat[i].salary; 
-            }
-           
+					if(eDat[i].salary < minSal)
+					{
+						minSal = eDat[i].salary; 
+						printf("\n%ld\t %s  Salary:- %ld",  eDat[i].eNo, eDat[i].eName, eDat[i].salary);
+					}  
         }
         break; 
 
-        case 6:
-        //quit program
-        exit(0); 
+        case 6: exit(0); 
         break; 
 
         default: 
-        //exit to main menu
-        printf("Incorrect Option. \n"); 
-        //clear screen
-        menu(); 
+        printf("\n Invalid Option. \n");  
         break; 
     }
 }
@@ -136,12 +133,12 @@ int main()
     {
         char ch; 
 
-        printf("\n Enter Employee Code:- "); 
+        printf("\n\n Enter Employee Code:- "); 
         scanf("%ld", &eDat[i].eNo); 
         ch = getchar(); 
         printf("\n Enter Employee Name:- ");
-        gets(eDat[i].eName);
-
+        scanf("%s", eDat[i].eName);
+		ch = getchar(); 
         printf("\n Enter Employee's salary:- ");
         scanf("%ld", &eDat[i].salary); 
         ch = getchar(); 
