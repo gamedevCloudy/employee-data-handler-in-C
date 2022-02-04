@@ -29,7 +29,7 @@ int menu()
     printf("3. Search Employee by Employee Number\n "); 
     printf("4. Display all employees having salary between 20000 to 5000 \n "); 
     printf("5. Display employee with minimum salary.\n "); 
-    printf("6. Quit. ./");
+    printf("6. Quit. \n");
     printf("\n\n"); 
     printf("Choose Option:- "); scanf("%d", &menuOption); 
     return menuOption;  
